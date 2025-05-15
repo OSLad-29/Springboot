@@ -13,4 +13,26 @@ public class FakeRepo implements FakeRepoInterface {
         users[userCount++] = new User(id, name, surname);
         return name;
     }
+
+    @Override
+    public String findUserById(long id) {
+        for (User user : users) {
+            if (user != null && user.getId() == id) {
+                return user.getName();
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String deleteUser(long id) {
+        for (int i = 0; i < users.length; i++) {
+            if (users[i] != null && users[i].getId() == id) {
+                String name = users[i].getName();
+                users[i] = null;
+                return name;
+            }
+        }
+        return null;
+    }
 }
